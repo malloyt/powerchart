@@ -1,60 +1,44 @@
-int startX=250;
-int startY=0;
-int endX=0;
-int endY=150;
-float sweight=5;
-float transp=100;
-int decision=0;
-//0 = draw lightning bolt, 1 = draw fade/cover
-float fade=100;
-int recth=20;
-
 void setup() {
-  size(500, 500);
+  size(600, 600);
   background(0);
-  //frameRate(200);
 }
 
 void draw() {
 
-  println(decision);
+  //ENTER INPUT HERE!!!
+  int input =10;
 
-  if (decision==0) {
-    decision=0;
+  fill(255);
+  textSize(30);
+  textAlign(CENTER);
+  text(input, 50, 40);
+  text(input + "^2", 200, 40);
+  text(input + "^3", 350, 40);
+  text(input + "^4", 500, 40);
 
-    if (endY < 500) {
-      endX=startX+(int)(Math.random()*19)-9;
-      endY=startY+(int)(Math.random()*10);
-      sweight-=0.035;
-      transp-=1;
-      strokeWeight(sweight);
-      stroke(250, 250, 20, transp);
-      line(startX, startY, endX, endY);
-      startX=endX;
-      startY=endY;
-    }
-    if (endY>=499) {
-      startX=250;
-      startY=0;
-      endX=0;
-      endY=150;
-      sweight=5;
-      transp=100;
-      decision=1;
-    }
-  } else if (decision==1) {
-    decision=1;
-   
-    fade-=2;
-    recth+=12;
-    noStroke();
-    fill(0, 0, 0, fade);
-    rect(0, 0, 500, recth);
-    if (recth>=450) {
-      decision=0;
-      fade=100;
-      recth=20;
-    
-    }
+
+  textSize(20);
+  int yposN = 50;
+  for (int i = 0; i < input; i++) {
+    yposN+=30;
+    text((i+1), 50, yposN);
+  } //column counting to INPUT
+  
+  int yposN2 = 50;
+  for (int i = 1; i <= input; i++) {
+    yposN2+=30;
+    text((i*i), 200, yposN2);
+  }
+  
+  int yposN3 = 50;
+  for (int i = 1; i <= input; i++) {
+    yposN3 +=30;
+    text((int)(Math.pow(i,3)), 350,yposN3);
+  }
+  
+  int yposN4 = 50;
+  for (int i = 1; i <= input; i++) {
+    yposN4 +=30;
+    text((int)(Math.pow(i,4)), 500,yposN4);
   }
 }
